@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_test" sys_id="901fc191-526b-4bac-8f39-3000131bebae">
+    <sys_atf_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Garante que PacoteEntity.deduzirSessao() retorna false quando sessoes_utilizadas == total_sessoes.</description>
+        <name>RN-03 - Dedução sem saldo bloqueada</name>
+        <sys_id>901fc191-526b-4bac-8f39-3000131bebae</sys_id>
+        <sys_name>RN-03 - Dedução sem saldo bloqueada</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <table>x_espaco_pacote</table>
+    </sys_atf_test>
+</record_update>

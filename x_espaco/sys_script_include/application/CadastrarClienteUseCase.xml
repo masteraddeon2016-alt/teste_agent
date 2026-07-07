@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include" sys_id="8f60a35c-2b41-4f59-9a62-a198794aff94">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_espaco.CadastrarClienteUseCase</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CadastrarClienteUseCase</name>
+        <script><![CDATA[// Script Include: CadastrarClienteUseCase
+// Camada: APLICAÇÃO — orquestra o caso de uso de cadastro de cliente,
+// delegando invariantes ao ClienteEntity e persistência ao ClienteRepository.
+var CadastrarClienteUseCase = Class.create();
+CadastrarClienteUseCase.prototype = {
+    initialize: function() {},
+
+    /**
+     * Executa o cadastro de um novo cliente.
+     * Implementação completa na Fase 3.
+     */
+    execute: function(dadosCliente) {
+        // TODO Fase 3
+        return null;
+    },
+
+    type: 'CadastrarClienteUseCase'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_id>8f60a35c-2b41-4f59-9a62-a198794aff94</sys_id>
+        <sys_name>CadastrarClienteUseCase</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_script_include>
+</record_update>

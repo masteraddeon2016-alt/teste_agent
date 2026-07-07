@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_choice" sys_id="8e839915-b6c3-4295-a5a1-a46053662283">
+    <sys_choice action="INSERT_OR_UPDATE">
+        <element>status</element>
+        <inactive>false</inactive>
+        <label>Expirado</label>
+        <language>en</language>
+        <name>x_espaco_pacote</name>
+        <sequence>3</sequence>
+        <sys_id>8e839915-b6c3-4295-a5a1-a46053662283</sys_id>
+        <sys_name>x_espaco_pacote.status.expirado</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <value>expirado</value>
+    </sys_choice>
+</record_update>

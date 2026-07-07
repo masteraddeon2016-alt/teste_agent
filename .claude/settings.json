@@ -1,0 +1,25 @@
+﻿{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/hook-progress.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/hook-stop.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

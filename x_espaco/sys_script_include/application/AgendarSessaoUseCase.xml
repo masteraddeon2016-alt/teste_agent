@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include" sys_id="7565a74f-b48b-4355-ba5c-d683212b759f">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_espaco.AgendarSessaoUseCase</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>AgendarSessaoUseCase</name>
+        <script><![CDATA[// Script Include: AgendarSessaoUseCase
+// Camada: APLICAÇÃO — orquestra o caso de uso de agendamento de sessão,
+// delegando invariantes ao AgendamentoEntity/ClienteEntity e persistência ao AgendamentoRepository.
+var AgendarSessaoUseCase = Class.create();
+AgendarSessaoUseCase.prototype = {
+    initialize: function() {},
+
+    /**
+     * Executa o agendamento de uma sessão.
+     * Implementação completa na Fase 3.
+     */
+    execute: function(dadosAgendamento) {
+        // TODO Fase 3
+        return null;
+    },
+
+    type: 'AgendarSessaoUseCase'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_id>7565a74f-b48b-4355-ba5c-d683212b759f</sys_id>
+        <sys_name>AgendarSessaoUseCase</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_script_include>
+</record_update>

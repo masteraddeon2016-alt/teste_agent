@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "platform_bridge": {
+      "command": "/Users/admin/Desktop/testeAgent3/agents/agent-macos-apple-int4",
+      "args": [
+        "--mcp-mode"
+      ],
+      "env": {
+        "PLATFORM_URL": "http://localhost:5001",
+        "SESSION_ID": "b0a9e503-1c7a-4cb7-aa2b-ec65d4b04a24"
+      }
+    }
+  }
+}

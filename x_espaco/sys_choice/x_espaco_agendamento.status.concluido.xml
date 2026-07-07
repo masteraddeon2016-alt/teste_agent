@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_choice" sys_id="30969e1d-c70c-443b-9d61-e59d36fc4fba">
+    <sys_choice action="INSERT_OR_UPDATE">
+        <element>status</element>
+        <inactive>false</inactive>
+        <label>Concluído</label>
+        <language>en</language>
+        <name>x_espaco_agendamento</name>
+        <sequence>3</sequence>
+        <sys_id>30969e1d-c70c-443b-9d61-e59d36fc4fba</sys_id>
+        <sys_name>x_espaco_agendamento.status.concluido</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <value>concluido</value>
+    </sys_choice>
+</record_update>

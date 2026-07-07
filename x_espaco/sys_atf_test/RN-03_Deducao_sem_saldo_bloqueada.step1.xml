@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="661e92d2-7fea-4b1b-9eea-e0e50cb751fb">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Cria pacote com total_sessoes=1, sessoes_utilizadas=1 (sem saldo).</description>
+        <name>criar_pacote</name>
+        <order>100</order>
+        <step_config>{"table": "x_espaco_pacote", "field_values": {"cliente": "${cliente_teste}", "total_sessoes": "1", "sessoes_utilizadas": "1", "status": "ativo"}, "expect_failure": false}</step_config>
+        <step_type>Record Insert</step_type>
+        <sys_id>661e92d2-7fea-4b1b-9eea-e0e50cb751fb</sys_id>
+        <sys_name>criar_pacote</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>901fc191-526b-4bac-8f39-3000131bebae</test>
+    </sys_atf_step>
+</record_update>

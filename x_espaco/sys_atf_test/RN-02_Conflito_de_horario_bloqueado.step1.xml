@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="6701c11c-b8ba-4479-8b62-6e2c598ddbfa">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Insere o agendamento A (profissional P, data D, status novo).</description>
+        <name>Criar agendamento A</name>
+        <order>100</order>
+        <step_config>{"table": "x_espaco_agendamento", "field_values": {"profissional": "${profissional_teste}", "cliente": "${cliente_teste}", "servico": "${servico_teste}", "data_hora": "${data_hora_teste}", "status": "novo"}, "expect_failure": false}</step_config>
+        <step_type>Record Insert</step_type>
+        <sys_id>6701c11c-b8ba-4479-8b62-6e2c598ddbfa</sys_id>
+        <sys_name>Criar agendamento A</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>8156d41c-a6c7-4c74-b619-725406a2782c</test>
+    </sys_atf_step>
+</record_update>

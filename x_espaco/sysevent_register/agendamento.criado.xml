@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysevent_register" sys_id="2ed2c540-3d23-46ef-82d6-fe6d19445791">
+    <sysevent_register action="INSERT_OR_UPDATE">
+        <description>Disparado quando um novo agendamento é inserido.</description>
+        <fired_by/>
+        <name>agendamento.criado</name>
+        <queue>true</queue>
+        <sys_id>2ed2c540-3d23-46ef-82d6-fe6d19445791</sys_id>
+        <sys_name>agendamento.criado</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sysevent_register>
+</record_update>

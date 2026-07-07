@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="c5ca6ab9-1cc9-435a-9350-bc8327726c81">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Cria cliente com consentimento_lgpd=false.</description>
+        <name>criar_cliente_sem_consentimento</name>
+        <order>100</order>
+        <step_config>{"table": "x_espaco_cliente", "field_values": {"nome": "Cliente Teste ATF", "consentimento_lgpd": "false", "ativo": "true"}, "expect_failure": false}</step_config>
+        <step_type>Record Insert</step_type>
+        <sys_id>c5ca6ab9-1cc9-435a-9350-bc8327726c81</sys_id>
+        <sys_name>criar_cliente_sem_consentimento</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>9441d32a-b00b-4472-b6fb-da3e6cab184f</test>
+    </sys_atf_step>
+</record_update>

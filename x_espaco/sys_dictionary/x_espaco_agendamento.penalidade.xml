@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_dictionary" sys_id="5b891371-1c38-46a1-9339-cee4fd0e39fd">
+    <sys_dictionary action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <column_label>Penalidade</column_label>
+        <default_value>false</default_value>
+        <element>penalidade</element>
+        <internal_type>boolean</internal_type>
+        <mandatory>false</mandatory>
+        <name>x_espaco_agendamento</name>
+        <sys_id>5b891371-1c38-46a1-9339-cee4fd0e39fd</sys_id>
+        <sys_name>x_espaco_agendamento.penalidade</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_dictionary>
+</record_update>

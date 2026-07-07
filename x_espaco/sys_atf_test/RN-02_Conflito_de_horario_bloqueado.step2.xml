@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="e93e2aed-d4ec-4f20-aab0-a88131f46123">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Tenta inserir o agendamento B com mesmo profissional e mesma data_hora do agendamento A; assert que o insert é rejeitado pela Business Rule 'Validar Agendamento' (RN-02).</description>
+        <name>Criar agendamento B (mesmo horário) — deve falhar</name>
+        <order>200</order>
+        <step_config>{"table": "x_espaco_agendamento", "field_values": {"profissional": "${profissional_teste}", "cliente": "${cliente_teste}", "servico": "${servico_teste}", "data_hora": "${data_hora_teste}", "status": "novo"}, "expect_failure": true}</step_config>
+        <step_type>Record Insert</step_type>
+        <sys_id>e93e2aed-d4ec-4f20-aab0-a88131f46123</sys_id>
+        <sys_name>Criar agendamento B (mesmo horário) — deve falhar</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>8156d41c-a6c7-4c74-b619-725406a2782c</test>
+    </sys_atf_step>
+</record_update>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include" sys_id="930f4b18-f974-495e-93d7-8e9bfc375d22">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_espaco.PacoteEntity</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>PacoteEntity</name>
+        <script><![CDATA[// Script Include: PacoteEntity
+// Camada: DOMÍNIO — encapsula regras e invariantes do agregado Pacote (saldo de sessões).
+// client_callable = FALSE (uso apenas server-side)
+var PacoteEntity = Class.create();
+PacoteEntity.prototype = {
+    initialize: function(gr) {
+        // gr: GlideRecord de x_espaco_pacote (opcional)
+        this.gr = gr || null;
+    },
+
+    /**
+     * RN-03: verifica se o pacote possui saldo de sessões.
+     * @returns {boolean}
+     */
+    temSaldo: function() {
+        if (!this.gr) {
+            return false;
+        }
+        return parseInt(this.gr.getValue('sessoes_utilizadas'), 10) <
+               parseInt(this.gr.getValue('total_sessoes'), 10);
+    },
+
+    /**
+     * Deduz uma sessão. RN-03: só permite com saldo.
+     * Marca 'esgotado' ao atingir o total (RN-05).
+     * @returns {boolean} true se deduziu
+     */
+    deduzirSessao: function() {
+        if (!this.gr || !this.temSaldo()) {
+            gs.addErrorMessage('Pacote sem saldo de sessões disponível.');
+            return false;
+        }
+        var usadas = parseInt(this.gr.getValue('sessoes_utilizadas'), 10) + 1;
+        this.gr.setValue('sessoes_utilizadas', usadas);
+        if (usadas >= parseInt(this.gr.getValue('total_sessoes'), 10)) {
+            this.gr.setValue('status', 'esgotado');
+        }
+        this.gr.update();
+        return true;
+    },
+
+    type: 'PacoteEntity'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_id>930f4b18-f974-495e-93d7-8e9bfc375d22</sys_id>
+        <sys_name>PacoteEntity</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_script_include>
+</record_update>

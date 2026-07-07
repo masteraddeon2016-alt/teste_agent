@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="0f5a18cc-38ce-42c3-920c-d8ad22824b49">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Tenta inserir agendamento para o cliente criado no passo anterior; assert que o insert é rejeitado pela Business Rule 'Validar Agendamento' (RN-01).</description>
+        <name>Criar agendamento para cliente sem consentimento — deve falhar</name>
+        <order>200</order>
+        <step_config>{"table": "x_espaco_agendamento", "field_values": {"cliente": "${steps.criar_cliente_sem_consentimento.record_id}", "servico": "${servico_teste}", "profissional": "${profissional_teste}", "data_hora": "${data_hora_teste}", "status": "novo"}, "expect_failure": true}</step_config>
+        <step_type>Record Insert</step_type>
+        <sys_id>0f5a18cc-38ce-42c3-920c-d8ad22824b49</sys_id>
+        <sys_name>Criar agendamento para cliente sem consentimento — deve falhar</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>9441d32a-b00b-4472-b6fb-da3e6cab184f</test>
+    </sys_atf_step>
+</record_update>

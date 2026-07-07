@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_dictionary" sys_id="dff13e60-2402-4a40-84f3-d8a6af78bf77">
+    <sys_dictionary action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <column_label>Total de Sessões</column_label>
+        <element>total_sessoes</element>
+        <internal_type>integer</internal_type>
+        <mandatory>true</mandatory>
+        <name>x_espaco_pacote</name>
+        <sys_id>dff13e60-2402-4a40-84f3-d8a6af78bf77</sys_id>
+        <sys_name>x_espaco_pacote.total_sessoes</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_dictionary>
+</record_update>

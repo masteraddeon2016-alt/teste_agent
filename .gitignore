@@ -1,0 +1,60 @@
+﻿# ===== Agentes locais da plataforma (binários de pareamento, não fazem parte do app x_espaco) =====
+agents/
+agent2/
+
+# ===== ServiceNow / Source Control =====
+*.xml.bak
+update_sets_export/
+*.update_set
+
+# ===== Segredos e configs reais =====
+appsettings.json
+appsettings.*.json
+!appsettings.example.json
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+*.pfx
+
+# ===== .NET (Agente Bridge) =====
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+
+# ===== Node / build de widgets (se aplicável) =====
+node_modules/
+dist/
+npm-debug.log*
+yarn-error.log*
+
+# ===== Logs =====
+workflow/logs/
+*.log
+logs/
+
+# ===== IDE / Editores =====
+.vs/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ===== Testes / Cobertura =====
+coverage/
+*.trx
+TestResults/
+atf_results/
+
+# ===== Temporários =====
+*.tmp
+*.temp
+~$*

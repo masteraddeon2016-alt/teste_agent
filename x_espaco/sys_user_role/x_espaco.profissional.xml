@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_user_role" sys_id="d646869d-6f25-4476-8171-37d803a0275d">
+    <sys_user_role action="INSERT_OR_UPDATE">
+        <assignable_by/>
+        <can_delegate>false</can_delegate>
+        <description>Profissional aplicador. Acessa a própria agenda e registra execução de sessões.</description>
+        <elevated_privilege>false</elevated_privilege>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_espaco.profissional</name>
+        <requires_subscription>false</requires_subscription>
+        <scoped_admin>false</scoped_admin>
+        <suffix>profissional</suffix>
+        <sys_id>d646869d-6f25-4476-8171-37d803a0275d</sys_id>
+        <sys_name>x_espaco.profissional</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_user_role>
+</record_update>

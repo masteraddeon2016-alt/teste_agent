@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_dictionary" sys_id="bc276963-334a-41ce-b941-8e17c984801b">
+    <sys_dictionary action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <column_label>Duração (minutos)</column_label>
+        <default_value>30</default_value>
+        <element>duracao_minutos</element>
+        <internal_type>integer</internal_type>
+        <mandatory>false</mandatory>
+        <name>x_espaco_servico</name>
+        <sys_id>bc276963-334a-41ce-b941-8e17c984801b</sys_id>
+        <sys_name>x_espaco_servico.duracao_minutos</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_dictionary>
+</record_update>

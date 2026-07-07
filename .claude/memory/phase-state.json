@@ -1,0 +1,56 @@
+{
+  "sessionId": "b0a9e503-1c7a-4cb7-aa2b-ec65d4b04a24",
+  "platformUrl": "http://localhost:5001",
+  "currentPhase": 5,
+  "updatedAt": "2026-07-07T16:46:26.8299281Z",
+  "phases": [
+    {
+      "index": 1,
+      "nome": "Funda\u00E7\u00E3o da Aplica\u00E7\u00E3o Scoped e Modelo de Dados",
+      "objetivo": "Criar a aplica\u00E7\u00E3o scoped x_espaco com o modelo de dados completo, roles e estrutura base de Clean Architecture/DDD.",
+      "status": "done",
+      "completedAt": "2026-07-07T16:45:15.6789803Z",
+      "failedAt": null
+    },
+    {
+      "index": 2,
+      "nome": "Camada de Dom\u00EDnio e Regras de Neg\u00F3cio",
+      "objetivo": "Implementar entidades de dom\u00EDnio, agregados e regras de neg\u00F3cio via Script Includes e Business Rules garantindo invariantes.",
+      "status": "done",
+      "completedAt": "2026-07-07T16:45:24.8720860Z",
+      "failedAt": null
+    },
+    {
+      "index": 3,
+      "nome": "Casos de Uso e Scripted REST APIs",
+      "objetivo": "Expor os casos de uso via Scripted REST APIs REST com valida\u00E7\u00E3o, pagina\u00E7\u00E3o e contratos definidos.",
+      "status": "done",
+      "completedAt": "2026-07-07T16:45:28.5788907Z",
+      "failedAt": null
+    },
+    {
+      "index": 4,
+      "nome": "Conformidade LGPD, Seguran\u00E7a e Auditoria",
+      "objetivo": "Implementar controles de LGPD/GDPR, ACLs completas, auditoria de dados sens\u00EDveis e anonimiza\u00E7\u00E3o.",
+      "status": "done",
+      "completedAt": "2026-07-07T16:46:26.8295140Z",
+      "failedAt": null
+    },
+    {
+      "index": 5,
+      "nome": "Fluxos, Notifica\u00E7\u00F5es e Integra\u00E7\u00F5es",
+      "objetivo": "Orquestrar fluxos de neg\u00F3cio e notifica\u00E7\u00F5es de agendamento via Flow Designer e IntegrationHub.",
+      "status": "idle",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "index": 6,
+      "nome": "Interface, Dashboard, Testes e Deploy",
+      "objetivo": "Entregar as telas de usu\u00E1rio, dashboard de indicadores, su\u00EDte de testes completa e pipeline de deploy.",
+      "status": "idle",
+      "completedAt": null,
+      "failedAt": null
+    }
+  ]
+}
