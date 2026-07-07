@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_dictionary" sys_id="64661a39-eb32-4231-8391-485fcca518de">
+    <sys_dictionary action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <column_label>ID do Registro</column_label>
+        <element>registro_id</element>
+        <internal_type>string</internal_type>
+        <mandatory>true</mandatory>
+        <max_length>32</max_length>
+        <name>x_espaco_log_auditoria</name>
+        <sys_id>64661a39-eb32-4231-8391-485fcca518de</sys_id>
+        <sys_name>x_espaco_log_auditoria.registro_id</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_dictionary>
+</record_update>

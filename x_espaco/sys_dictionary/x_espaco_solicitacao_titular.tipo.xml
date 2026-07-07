@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sys_dictionary" sys_id="134cb0cb-0bed-4ebc-81d1-1517779817fa">
+<record_update table="sys_dictionary" sys_id="2b459a13-b658-4810-ae8f-899c9b15b01d">
     <sys_dictionary action="INSERT_OR_UPDATE">
         <active>true</active>
-        <audit>true</audit>
         <choice>1</choice>
-        <column_label>Status</column_label>
-        <default_value>novo</default_value>
-        <element>status</element>
+        <column_label>Tipo</column_label>
+        <element>tipo</element>
         <internal_type>string</internal_type>
-        <mandatory>false</mandatory>
+        <mandatory>true</mandatory>
         <max_length>40</max_length>
-        <name>x_espaco_agendamento</name>
-        <sys_id>134cb0cb-0bed-4ebc-81d1-1517779817fa</sys_id>
-        <sys_name>x_espaco_agendamento.status</sys_name>
+        <name>x_espaco_solicitacao_titular</name>
+        <sys_id>2b459a13-b658-4810-ae8f-899c9b15b01d</sys_id>
+        <sys_name>x_espaco_solicitacao_titular.tipo</sys_name>
         <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
         <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
     </sys_dictionary>

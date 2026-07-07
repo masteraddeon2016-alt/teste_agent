@@ -34,12 +34,17 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 - Verificação de role por resource via `gs.hasRole` (recepcionista/gestor/admin escrevem, demais papéis leem).
 - Teste ATF tipo REST cobrindo 201/400/409 e paginação.
 
-## [0.4.0] - planejado — LGPD e Segurança (Fase 4)
+## [0.4.0] - 2026-07-07 — LGPD e Segurança (Fase 4)
 ### Added
-- ACLs record e field level por role.
-- `AnonimizacaoService`, `AuditoriaAcessoService`.
-- Auditoria de campos em tabelas de dados pessoais.
-- Flow de aprovação de solicitações do titular.
+- ACLs record-level em `x_espaco_cliente`/`x_espaco_agendamento`/`x_espaco_pacote` (leitura ampla, escrita restrita por role) e field-level em `cliente.email`/`cliente.telefone` bloqueando a role `x_espaco.leitura`.
+- Campos de consentimento em `x_espaco_cliente`: `consentimento_data`, `consentimento_versao`, `consentimento_finalidade` (obrigatórios quando `consentimentoLgpd=true` no cadastro).
+- Tabela `x_espaco_log_auditoria` e Script Include `AuditoriaAcessoService.registrar`.
+- Script Include `AnonimizacaoService.anonimizarCliente` (hash SHA256, preserva histórico de agendamentos, dispara `lgpd.dados_anonimizados`).
+- Field auditing (`audit=true`) em `cliente.email`, `cliente.telefone`, `cliente.consentimento_lgpd` e `agendamento.status`.
+- Tabela `x_espaco_solicitacao_titular` (tipo/status) e Flow "Solicitação de Exclusão LGPD": aprovação (role `x_espaco.admin` atuando como DPO — o modelo de roles da Fase 1 não previu uma role `dpo` dedicada) → `AnonimizacaoService` → notificação do titular.
+- Evento `lgpd.solicitacao_criada` (Business Rule thin) somado aos eventos já existentes.
+- Sanitização de entrada reforçada em `CadastrarClienteUseCase` (regex de email/telefone, `GlideStringUtil.escapeHTML` no nome) e `AgendarSessaoUseCase` (formato de `dataHora`).
+- 2 testes ATF: bloqueio de campo sensível para role `leitura` e anonimização com preservação de histórico + log de auditoria.
 
 ## [0.5.0] - planejado — Notificações e Integrações (Fase 5)
 ### Added

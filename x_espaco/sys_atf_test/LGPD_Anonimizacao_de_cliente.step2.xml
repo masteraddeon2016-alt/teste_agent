@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="2bad3376-d0d3-4c86-9a12-884cc5a54fc3">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Executa AnonimizacaoService.anonimizarCliente(clienteId) e assert retorno true.</description>
+        <name>Server Side Script - executar anonimizarCliente</name>
+        <order>200</order>
+        <step_config>{"script": "(function(outputs, steps, stepResult, assertEqual) {\n    var id = steps('criar_cliente_com_agendamento').record_id;\n    var ok = new AnonimizacaoService().anonimizarCliente(id);\n    assertEqual({ name: 'anonimizacao executada com sucesso', shouldbe: true, value: ok });\n})(outputs, steps, stepResult, assertEqual);"}</step_config>
+        <step_type>Server Side Script</step_type>
+        <sys_id>2bad3376-d0d3-4c86-9a12-884cc5a54fc3</sys_id>
+        <sys_name>Server Side Script - executar anonimizarCliente</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>05202236-4e3e-4adc-b919-77ebfbf6e74c</test>
+    </sys_atf_step>
+</record_update>

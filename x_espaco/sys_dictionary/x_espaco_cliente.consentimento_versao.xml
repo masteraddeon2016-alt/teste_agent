@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sys_dictionary" sys_id="ac2f6a2b-93bc-417c-9c50-14069b7e05ff">
+<record_update table="sys_dictionary" sys_id="7cebd3a4-4897-4268-a733-242b61d5cc8c">
     <sys_dictionary action="INSERT_OR_UPDATE">
         <active>true</active>
-        <audit>true</audit>
-        <column_label>Email</column_label>
-        <element>email</element>
+        <column_label>Versão do Termo</column_label>
+        <element>consentimento_versao</element>
         <internal_type>string</internal_type>
         <mandatory>false</mandatory>
-        <max_length>100</max_length>
+        <max_length>20</max_length>
         <name>x_espaco_cliente</name>
-        <sys_id>ac2f6a2b-93bc-417c-9c50-14069b7e05ff</sys_id>
-        <sys_name>x_espaco_cliente.email</sys_name>
+        <sys_id>7cebd3a4-4897-4268-a733-242b61d5cc8c</sys_id>
+        <sys_name>x_espaco_cliente.consentimento_versao</sys_name>
         <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
         <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
     </sys_dictionary>

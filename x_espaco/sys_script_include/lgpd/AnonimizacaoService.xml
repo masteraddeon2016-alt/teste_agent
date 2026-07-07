@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include" sys_id="f44ad194-8ac8-4a2e-904b-9f3d7560c14f">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_espaco.AnonimizacaoService</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>AnonimizacaoService</name>
+        <script><![CDATA[// Script Include: AnonimizacaoService
+// Camada: SERVIÇO LGPD — anonimiza dados pessoais do cliente por solicitação do titular
+// (RN-05 / direito ao esquecimento), preservando integridade referencial do histórico.
+var AnonimizacaoService = Class.create();
+AnonimizacaoService.prototype = {
+    initialize: function() {},
+
+    /**
+     * Anonimiza dados pessoais do cliente mantendo integridade referencial
+     * dos agendamentos históricos. Registra a operação em log e dispara
+     * o evento lgpd.dados_anonimizados.
+     * @param {string} clienteId
+     * @returns {boolean} true se anonimizado com sucesso
+     */
+    anonimizarCliente: function(clienteId) {
+        var gr = new GlideRecord('x_espaco_cliente');
+        if (!gr.get(clienteId)) {
+            return false;
+        }
+
+        var hash = new GlideDigest().getSHA256Base64(clienteId + gs.nowDateTime());
+        gr.setValue('nome', 'ANONIMIZADO-' + hash.substr(0, 8));
+        gr.setValue('email', 'anonimizado@lgpd.local');
+        gr.setValue('telefone', '');
+        gr.setValue('consentimento_lgpd', false);
+        gr.setValue('ativo', false);
+        gr.update();
+
+        new AuditoriaAcessoService().registrar('ANONIMIZACAO', 'x_espaco_cliente', clienteId,
+            'Dados pessoais anonimizados por solicitação do titular (LGPD).');
+        gs.eventQueue('lgpd.dados_anonimizados', gr, clienteId, '');
+        return true;
+    },
+
+    type: 'AnonimizacaoService'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_id>f44ad194-8ac8-4a2e-904b-9f3d7560c14f</sys_id>
+        <sys_name>AnonimizacaoService</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_script_include>
+</record_update>

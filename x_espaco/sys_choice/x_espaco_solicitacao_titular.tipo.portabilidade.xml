@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_choice" sys_id="9a724b54-1781-4665-b266-ecf97ec507ad">
+    <sys_choice action="INSERT_OR_UPDATE">
+        <element>tipo</element>
+        <inactive>false</inactive>
+        <label>Portabilidade</label>
+        <language>en</language>
+        <name>x_espaco_solicitacao_titular</name>
+        <sequence>2</sequence>
+        <sys_id>9a724b54-1781-4665-b266-ecf97ec507ad</sys_id>
+        <sys_name>x_espaco_solicitacao_titular.tipo.portabilidade</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <value>portabilidade</value>
+    </sys_choice>
+</record_update>

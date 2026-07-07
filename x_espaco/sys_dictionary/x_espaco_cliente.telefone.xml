@@ -2,6 +2,7 @@
 <record_update table="sys_dictionary" sys_id="fe0c6fc5-84b4-4d9f-8d5c-e1ed84ace3ad">
     <sys_dictionary action="INSERT_OR_UPDATE">
         <active>true</active>
+        <audit>true</audit>
         <column_label>Telefone</column_label>
         <element>telefone</element>
         <internal_type>string</internal_type>

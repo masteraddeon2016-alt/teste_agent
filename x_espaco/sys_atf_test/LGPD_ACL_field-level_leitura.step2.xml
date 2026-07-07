@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="01515bc2-4130-4397-9356-aa11b9505c0d">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Consulta um registro de x_espaco_cliente e assert que os campos email/telefone retornam vazios/inacessíveis devido às ACLs de campo (x_espaco_cliente.email.read, x_espaco_cliente.telefone.read).</description>
+        <name>Ler cliente e assert campos sensíveis vazios/bloqueados</name>
+        <order>200</order>
+        <step_config>{"script": "(function(outputs, steps, stepResult, assertEqual) {\n    var gr = new GlideRecord('x_espaco_cliente');\n    gr.get('${cliente_teste}');\n    assertEqual({ name: 'email bloqueado para leitura', shouldbe: '', value: gr.getValue('email') });\n    assertEqual({ name: 'telefone bloqueado para leitura', shouldbe: '', value: gr.getValue('telefone') });\n})(outputs, steps, stepResult, assertEqual);"}</step_config>
+        <step_type>Server Side Script</step_type>
+        <sys_id>01515bc2-4130-4397-9356-aa11b9505c0d</sys_id>
+        <sys_name>Ler cliente e assert campos sensíveis vazios/bloqueados</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>9c4774fe-0908-4caa-8b00-bc40284d3364</test>
+    </sys_atf_step>
+</record_update>

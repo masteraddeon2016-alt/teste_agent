@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_hub_flow" sys_id="3fc833a8-741a-4bce-a741-3552c47b89b3">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description><![CDATA[Ao criar uma solicitação de exclusão (x_espaco_solicitacao_titular, tipo=exclusao), solicita aprovação do DPO/admin; se aprovado, chama AnonimizacaoService.anonimizarCliente e notifica o titular; se rejeitado, marca a solicitação como rejeitada.]]></description>
+        <flow_steps><![CDATA[1. Trigger: registro criado em x_espaco_solicitacao_titular (tipo=exclusao, status=pendente).\n2. Ask for Approval: role x_espaco.admin (aprovador atua como DPO; ver nota de escopo de roles).\n3. Se aprovado: Script Action -> new AnonimizacaoService().anonimizarCliente(trigger.cliente); atualiza solicitacao.status='concluido', aprovado_por=approver, data_decisao=now.\n4. Se rejeitado: atualiza solicitacao.status='rejeitado', aprovado_por=approver, data_decisao=now.\n5. Notify: notifica o titular (cliente.email) do resultado da solicitação.]]></flow_steps>
+        <name>Solicitação de Exclusão LGPD</name>
+        <run_as>user_who_triggers</run_as>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_id>3fc833a8-741a-4bce-a741-3552c47b89b3</sys_id>
+        <sys_name>Solicitação de Exclusão LGPD</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <trigger_condition>tipo=exclusao^status=pendente</trigger_condition>
+        <trigger_table>x_espaco_solicitacao_titular</trigger_table>
+        <trigger_type>record_created</trigger_type>
+    </sys_hub_flow>
+</record_update>

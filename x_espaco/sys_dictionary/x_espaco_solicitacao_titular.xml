@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_dictionary" sys_id="afe2f42f-a77d-429b-a840-a877282a9318">
+    <sys_dictionary action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <internal_type>collection</internal_type>
+        <label>Solicitação do Titular (LGPD)</label>
+        <name>x_espaco_solicitacao_titular</name>
+        <sys_id>afe2f42f-a77d-429b-a840-a877282a9318</sys_id>
+        <sys_name>x_espaco_solicitacao_titular</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_dictionary>
+</record_update>

@@ -15,26 +15,52 @@ var CadastrarClienteUseCase = Class.create();
 CadastrarClienteUseCase.prototype = {
     initialize: function() {},
 
+    EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    TELEFONE_REGEX: /^[0-9()+\-\s]{8,20}$/,
+
     /**
-     * Executa o cadastro de um novo cliente.
-     * dadosCliente: {nome, email, telefone, consentimentoLgpd}
+     * Executa o cadastro de um novo cliente, com sanitização de entrada (RNF de
+     * segurança da Fase 4) e registro de consentimento LGPD com finalidade e versão.
+     * dadosCliente: {nome, email, telefone, consentimentoLgpd, consentimentoVersao, consentimentoFinalidade}
      * @throws {code, message} em caso de validação inválida (HTTP 400)
      */
     execute: function(dadosCliente) {
         if (!dadosCliente.nome) {
             throw { code: 400, message: "Campo 'nome' é obrigatório." };
         }
+        var nome = GlideStringUtil.escapeHTML(dadosCliente.nome.trim());
+
+        var email = (dadosCliente.email || '').trim();
+        if (email && !this.EMAIL_REGEX.test(email)) {
+            throw { code: 400, message: "Campo 'email' possui formato inválido." };
+        }
+
+        var telefone = (dadosCliente.telefone || '').trim();
+        if (telefone && !this.TELEFONE_REGEX.test(telefone)) {
+            throw { code: 400, message: "Campo 'telefone' possui formato inválido." };
+        }
+
+        var consentimentoLgpd = dadosCliente.consentimentoLgpd ? true : false;
+        if (consentimentoLgpd && (!dadosCliente.consentimentoVersao || !dadosCliente.consentimentoFinalidade)) {
+            throw { code: 400, message: "Consentimento LGPD exige 'consentimentoVersao' e 'consentimentoFinalidade'." };
+        }
+
         var gr = new GlideRecord('x_espaco_cliente');
         gr.initialize();
-        gr.setValue('nome', dadosCliente.nome);
-        gr.setValue('email', dadosCliente.email || '');
-        gr.setValue('telefone', dadosCliente.telefone || '');
-        gr.setValue('consentimento_lgpd', dadosCliente.consentimentoLgpd ? true : false);
+        gr.setValue('nome', nome);
+        gr.setValue('email', email);
+        gr.setValue('telefone', telefone);
+        gr.setValue('consentimento_lgpd', consentimentoLgpd);
+        if (consentimentoLgpd) {
+            gr.setValue('consentimento_data', new GlideDateTime());
+            gr.setValue('consentimento_versao', dadosCliente.consentimentoVersao);
+            gr.setValue('consentimento_finalidade', dadosCliente.consentimentoFinalidade);
+        }
         var id = gr.insert();
         if (!id) {
             throw { code: 400, message: 'Não foi possível cadastrar o cliente.' };
         }
-        return { sys_id: id, nome: dadosCliente.nome };
+        return { sys_id: id, nome: nome };
     },
 
     type: 'CadastrarClienteUseCase'

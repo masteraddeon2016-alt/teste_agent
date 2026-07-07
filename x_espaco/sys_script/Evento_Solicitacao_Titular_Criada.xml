@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script" sys_id="44006740-46d0-4c99-b129-78b4563ab604">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>true</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_espaco_solicitacao_titular</collection>
+        <condition/>
+        <description>Dispara o evento lgpd.solicitacao_criada após a criação de uma solicitação do titular (aciona o Flow de aprovação).</description>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Evento Solicitacao Titular Criada</name>
+        <order>100</order>
+        <priority>100</priority>
+        <script><![CDATA[(function executeRule(current, previous) {
+    gs.eventQueue('lgpd.solicitacao_criada', current, current.getValue('cliente'), current.getValue('tipo'));
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_id>44006740-46d0-4c99-b129-78b4563ab604</sys_id>
+        <sys_name>Evento Solicitacao Titular Criada</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <template/>
+        <when>after</when>
+    </sys_script>
+</record_update>

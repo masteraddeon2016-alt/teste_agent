@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysevent_register" sys_id="cac09393-b20f-43a1-baad-8ad355bc048c">
+    <sysevent_register action="INSERT_OR_UPDATE">
+        <description>Disparado quando os dados pessoais de um cliente são anonimizados.</description>
+        <fired_by/>
+        <name>lgpd.dados_anonimizados</name>
+        <queue>true</queue>
+        <sys_id>cac09393-b20f-43a1-baad-8ad355bc048c</sys_id>
+        <sys_name>lgpd.dados_anonimizados</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sysevent_register>
+</record_update>

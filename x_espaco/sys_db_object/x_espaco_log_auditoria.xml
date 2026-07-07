@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_db_object" sys_id="9888c188-e168-4cf8-86f9-7d5f77467072">
+    <sys_db_object action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <caller_access/>
+        <create_access>true</create_access>
+        <delete_access>false</delete_access>
+        <extendable>false</extendable>
+        <is_extendable>false</is_extendable>
+        <label>Log de Auditoria</label>
+        <name>x_espaco_log_auditoria</name>
+        <read_access>true</read_access>
+        <sys_class_name>sys_db_object</sys_class_name>
+        <sys_id>9888c188-e168-4cf8-86f9-7d5f77467072</sys_id>
+        <sys_name>x_espaco_log_auditoria</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <update_access>false</update_access>
+        <user_role/>
+    </sys_db_object>
+</record_update>

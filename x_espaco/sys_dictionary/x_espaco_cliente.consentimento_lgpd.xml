@@ -2,6 +2,7 @@
 <record_update table="sys_dictionary" sys_id="c4dad949-9830-4626-a113-71b513f1f15a">
     <sys_dictionary action="INSERT_OR_UPDATE">
         <active>true</active>
+        <audit>true</audit>
         <column_label>Consentimento LGPD</column_label>
         <default_value>false</default_value>
         <element>consentimento_lgpd</element>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_dictionary" sys_id="28cb66cb-8e1c-4748-8991-872ef2286ee5">
+    <sys_dictionary action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <column_label>Data da Decisão</column_label>
+        <element>data_decisao</element>
+        <internal_type>glide_date_time</internal_type>
+        <mandatory>false</mandatory>
+        <name>x_espaco_solicitacao_titular</name>
+        <sys_id>28cb66cb-8e1c-4748-8991-872ef2286ee5</sys_id>
+        <sys_name>x_espaco_solicitacao_titular.data_decisao</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_dictionary>
+</record_update>

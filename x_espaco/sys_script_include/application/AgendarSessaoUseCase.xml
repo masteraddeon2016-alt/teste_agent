@@ -15,6 +15,8 @@ var AgendarSessaoUseCase = Class.create();
 AgendarSessaoUseCase.prototype = {
     initialize: function() {},
 
+    DATA_HORA_REGEX: /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/,
+
     /**
      * Executa o agendamento de uma sessão.
      * dadosAgendamento: {clienteId, servicoId, profissionalId, dataHora}
@@ -27,6 +29,9 @@ AgendarSessaoUseCase.prototype = {
             if (!dadosAgendamento[campo]) {
                 throw { code: 400, message: "Campo '" + campo + "' é obrigatório." };
             }
+        }
+        if (!this.DATA_HORA_REGEX.test(dadosAgendamento.dataHora)) {
+            throw { code: 400, message: "Campo 'dataHora' deve estar no formato 'YYYY-MM-DD HH:mm:ss'." };
         }
 
         if (new AgendamentoEntity().existeConflito(dadosAgendamento.profissionalId, dadosAgendamento.dataHora, null)) {

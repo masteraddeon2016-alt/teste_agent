@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="8d0439d4-a8a6-49a0-8297-25c0c40debf1">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Cria cliente com consentimento válido e um agendamento histórico associado (status concluido).</description>
+        <name>criar_cliente_com_agendamento</name>
+        <order>100</order>
+        <step_config>{"table": "x_espaco_cliente", "field_values": {"nome": "Cliente Anonimizar Teste", "email": "anonimizar@teste.com", "telefone": "11999998888", "consentimento_lgpd": "true"}, "expect_failure": false}</step_config>
+        <step_type>Record Insert</step_type>
+        <sys_id>8d0439d4-a8a6-49a0-8297-25c0c40debf1</sys_id>
+        <sys_name>criar_cliente_com_agendamento</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>05202236-4e3e-4adc-b919-77ebfbf6e74c</test>
+    </sys_atf_step>
+</record_update>

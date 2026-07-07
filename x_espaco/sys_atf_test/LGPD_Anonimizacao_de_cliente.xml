@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_test" sys_id="05202236-4e3e-4adc-b919-77ebfbf6e74c">
+    <sys_atf_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Garante que AnonimizacaoService.anonimizarCliente anonimiza dados pessoais, preserva histórico de agendamentos e registra auditoria.</description>
+        <name>LGPD - Anonimização de cliente (RN-05)</name>
+        <sys_id>05202236-4e3e-4adc-b919-77ebfbf6e74c</sys_id>
+        <sys_name>LGPD - Anonimização de cliente (RN-05)</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <table>x_espaco_cliente</table>
+    </sys_atf_test>
+</record_update>

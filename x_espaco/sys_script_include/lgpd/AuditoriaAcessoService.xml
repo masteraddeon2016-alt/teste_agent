@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include" sys_id="ef0cf56f-fe53-4d87-aa78-bf46d18f5f24">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_espaco.AuditoriaAcessoService</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>AuditoriaAcessoService</name>
+        <script><![CDATA[// Script Include: AuditoriaAcessoService
+// Camada: SERVIÇO LGPD — registra trilha de auditoria de operações sobre dados sensíveis
+// em x_espaco_log_auditoria (RNF-07/RNF-09).
+var AuditoriaAcessoService = Class.create();
+AuditoriaAcessoService.prototype = {
+    initialize: function() {
+        this.TABLE = 'x_espaco_log_auditoria';
+    },
+
+    /**
+     * Registra uma entrada de auditoria.
+     * @param {string} acao - ex.: 'ANONIMIZACAO', 'CONSULTA', 'ALTERACAO'
+     * @param {string} tabela - nome da tabela afetada
+     * @param {string} registroId - sys_id do registro afetado
+     * @param {string} detalhe - descrição da operação
+     * @returns {string} sys_id do log criado
+     */
+    registrar: function(acao, tabela, registroId, detalhe) {
+        var gr = new GlideRecord(this.TABLE);
+        gr.initialize();
+        gr.setValue('acao', acao);
+        gr.setValue('tabela', tabela);
+        gr.setValue('registro_id', registroId);
+        gr.setValue('usuario', gs.getUserID());
+        gr.setValue('detalhe', detalhe);
+        gr.setValue('data_hora', new GlideDateTime());
+        return gr.insert();
+    },
+
+    type: 'AuditoriaAcessoService'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_id>ef0cf56f-fe53-4d87-aa78-bf46d18f5f24</sys_id>
+        <sys_name>AuditoriaAcessoService</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_script_include>
+</record_update>

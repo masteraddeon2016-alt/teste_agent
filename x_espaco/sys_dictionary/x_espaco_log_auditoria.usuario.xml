@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_dictionary" sys_id="d554a102-51ef-4932-a28e-e67cd247becc">
+    <sys_dictionary action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <column_label>Usuário</column_label>
+        <element>usuario</element>
+        <internal_type>reference</internal_type>
+        <mandatory>false</mandatory>
+        <name>x_espaco_log_auditoria</name>
+        <reference>sys_user</reference>
+        <sys_id>d554a102-51ef-4932-a28e-e67cd247becc</sys_id>
+        <sys_name>x_espaco_log_auditoria.usuario</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_dictionary>
+</record_update>

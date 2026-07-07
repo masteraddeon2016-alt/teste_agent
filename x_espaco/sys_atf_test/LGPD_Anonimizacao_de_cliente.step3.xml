@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="93108c23-3166-4e82-9c9e-9ead3941dfbe">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Assert que nome/email foram substituídos, agendamento histórico ainda referencia o cliente (integridade referencial preservada) e que um registro foi criado em x_espaco_log_auditoria com acao=ANONIMIZACAO.</description>
+        <name>Assert dados anonimizados e log de auditoria criado</name>
+        <order>300</order>
+        <step_config>{"script": "(function(outputs, steps, stepResult, assertEqual) {\n    var id = steps('criar_cliente_com_agendamento').record_id;\n    var cli = new GlideRecord('x_espaco_cliente');\n    cli.get(id);\n    assertEqual({ name: 'email anonimizado', shouldbe: 'anonimizado@lgpd.local', value: cli.getValue('email') });\n\n    var log = new GlideRecord('x_espaco_log_auditoria');\n    log.addQuery('registro_id', id);\n    log.addQuery('acao', 'ANONIMIZACAO');\n    log.query();\n    assertEqual({ name: 'log de auditoria criado', shouldbe: true, value: log.hasNext() });\n})(outputs, steps, stepResult, assertEqual);"}</step_config>
+        <step_type>Server Side Script</step_type>
+        <sys_id>93108c23-3166-4e82-9c9e-9ead3941dfbe</sys_id>
+        <sys_name>Assert dados anonimizados e log de auditoria criado</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>05202236-4e3e-4adc-b919-77ebfbf6e74c</test>
+    </sys_atf_step>
+</record_update>

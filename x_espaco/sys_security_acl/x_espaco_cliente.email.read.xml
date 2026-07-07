@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_security_acl" sys_id="8a64ee5c-8cde-4d7d-a214-52aa5493bc29">
+    <sys_security_acl action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <description>Campo sensível (LGPD): role leitura não pode ver email do cliente.</description>
+        <name>x_espaco_cliente.email</name>
+        <operation>read</operation>
+        <roles>x_espaco.admin,x_espaco.gestor,x_espaco.recepcionista,x_espaco.profissional</roles>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_id>8a64ee5c-8cde-4d7d-a214-52aa5493bc29</sys_id>
+        <sys_name>x_espaco_cliente.email.read</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <type>record</type>
+    </sys_security_acl>
+</record_update>

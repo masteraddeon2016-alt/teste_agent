@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_test" sys_id="9c4774fe-0908-4caa-8b00-bc40284d3364">
+    <sys_atf_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Garante que um usuário com role x_espaco.leitura não consegue visualizar email/telefone do cliente.</description>
+        <name>LGPD - ACL field-level para role leitura</name>
+        <sys_id>9c4774fe-0908-4caa-8b00-bc40284d3364</sys_id>
+        <sys_name>LGPD - ACL field-level para role leitura</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <table>x_espaco_cliente</table>
+    </sys_atf_test>
+</record_update>

@@ -1,8 +1,8 @@
 {
   "sessionId": "b0a9e503-1c7a-4cb7-aa2b-ec65d4b04a24",
   "platformUrl": "http://localhost:5001",
-  "currentPhase": 3,
-  "updatedAt": "2026-07-07T18:56:44.8076019Z",
+  "currentPhase": 4,
+  "updatedAt": "2026-07-07T19:05:45.0008220Z",
   "phases": [
     {
       "index": 1,
@@ -24,8 +24,8 @@
       "index": 3,
       "nome": "Casos de Uso e Scripted REST APIs",
       "objetivo": "Expor os casos de uso via Scripted REST APIs REST com valida\u00E7\u00E3o, pagina\u00E7\u00E3o e contratos definidos.",
-      "status": "idle",
-      "completedAt": null,
+      "status": "done",
+      "completedAt": "2026-07-07T19:05:44.9988367Z",
       "failedAt": null
     },
     {
