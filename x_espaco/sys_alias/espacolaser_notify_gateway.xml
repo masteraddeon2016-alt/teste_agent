@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_alias" sys_id="8be497ea-aa1c-432d-9983-f14b642b4328">
+    <sys_alias action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_to>https://notify.espacolaser.com/api/send</applies_to>
+        <description><![CDATA[Credential Alias do gateway de notificação SMS (Espaço Laser). O segredo real (API key) é configurado apenas na instância via Connection & Credential Alias — nunca em texto claro no código-fonte.]]></description>
+        <name>espacolaser_notify_gateway</name>
+        <sys_class_name>sys_alias</sys_class_name>
+        <sys_id>8be497ea-aa1c-432d-9983-f14b642b4328</sys_id>
+        <sys_name>espacolaser_notify_gateway</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <type>api_key</type>
+    </sys_alias>
+</record_update>

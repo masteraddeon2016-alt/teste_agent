@@ -46,11 +46,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 - Sanitização de entrada reforçada em `CadastrarClienteUseCase` (regex de email/telefone, `GlideStringUtil.escapeHTML` no nome) e `AgendarSessaoUseCase` (formato de `dataHora`).
 - 2 testes ATF: bloqueio de campo sensível para role `leitura` e anonimização com preservação de histórico + log de auditoria.
 
-## [0.5.0] - planejado — Notificações e Integrações (Fase 5)
+## [0.5.0] - 2026-07-07 — Notificações e Integrações (Fase 5)
 ### Added
-- Flows de confirmação, lembrete e cancelamento.
-- `ReferenceCacheService` com invalidação por Business Rule.
-- Integrações CRM, Financeiro e Gateway de Notificações.
+- 4 Flows acionados por evento/agendamento: "Confirmação de Agendamento" (`agendamento.criado`, respeita consentimento LGPD), "Lembrete de Sessão" (scheduled, ~24h antes), "Aviso de Cancelamento" (`agendamento.cancelado`, inclui penalidade), "Renovação de Pacote" (`pacote.esgotado`, notifica gestor e cliente).
+- Subflow reutilizável `EnviarNotificacao` (e-mail via Notification record; SMS via IntegrationHub Spoke com Credential Alias).
+- `ReferenceCacheService` (cache de serviços em sessão) + Business Rule `Invalidar Cache de Servicos` (insert/update/delete em `x_espaco_servico`).
+- 4 Notification records: `confirmacao`, `lembrete`, `cancelamento`, `renovacao`.
+- Credential Alias `espacolaser_notify_gateway` (sem segredo em texto claro — valor real configurado apenas na instância).
+- Teste ATF cobrindo a invalidação/repopulação do cache de serviços.
 
 ## [1.0.0] - planejado — Go-Live (Fase 6)
 ### Added

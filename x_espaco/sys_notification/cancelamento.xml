@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_notification" sys_id="a137f268-2457-4e1e-b400-42162f6aa23f">
+    <sys_notification action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <collection>x_espaco_agendamento</collection>
+        <message><![CDATA[Olá ${cliente.nome},\n\nSeu agendamento de ${servico.nome} em ${data_hora} foi cancelado.\n${penalidade ? 'Atenção: cancelamentos com menos de 24h de antecedência estão sujeitos a penalidade conforme nossa política.' : ''}\n\nEspaço Laser.]]></message>
+        <name>cancelamento</name>
+        <subject>Seu agendamento na Espaço Laser foi cancelado</subject>
+        <sys_class_name>sys_notification</sys_class_name>
+        <sys_id>a137f268-2457-4e1e-b400-42162f6aa23f</sys_id>
+        <sys_name>cancelamento</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <weight>0</weight>
+    </sys_notification>
+</record_update>

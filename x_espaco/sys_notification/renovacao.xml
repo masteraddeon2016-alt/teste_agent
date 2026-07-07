@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_notification" sys_id="1fcbee98-3bb0-4833-ab4b-3ac8b4115797">
+    <sys_notification action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <collection>x_espaco_pacote</collection>
+        <message><![CDATA[Olá ${cliente.nome},\n\nSeu pacote de sessões foi totalmente utilizado. Entre em contato para renovar e continuar seu tratamento.\n\nEspaço Laser.]]></message>
+        <name>renovacao</name>
+        <subject>Pacote de sessões esgotado — renovação disponível</subject>
+        <sys_class_name>sys_notification</sys_class_name>
+        <sys_id>1fcbee98-3bb0-4833-ab4b-3ac8b4115797</sys_id>
+        <sys_name>renovacao</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <weight>0</weight>
+    </sys_notification>
+</record_update>

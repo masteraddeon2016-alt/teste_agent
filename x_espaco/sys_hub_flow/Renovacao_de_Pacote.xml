@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_hub_flow" sys_id="c65a4a80-dcae-4f9a-8b42-62bcd0af5c11">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description><![CDATA[Notifica gestor e cliente quando um pacote de sessões se esgota, sugerindo renovação.]]></description>
+        <flow_steps><![CDATA[1. Look Up Record x_espaco_pacote pelo sys_id recebido em event.parm1; dot-walk cliente.\n2. Subflow EnviarNotificacao(destinatarioEmail=cliente.email, template='renovacao', dados={cliente.nome}).\n3. Look Up Users com role x_espaco.gestor; para cada gestor: Subflow EnviarNotificacao(destinatarioEmail=gestor.email, template='renovacao', dados={cliente.nome, pacote}).]]></flow_steps>
+        <name>Renovação de Pacote</name>
+        <run_as>system</run_as>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_id>c65a4a80-dcae-4f9a-8b42-62bcd0af5c11</sys_id>
+        <sys_name>Renovação de Pacote</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <trigger_event>pacote.esgotado</trigger_event>
+        <trigger_table>x_espaco_pacote</trigger_table>
+        <trigger_type>event</trigger_type>
+    </sys_hub_flow>
+</record_update>

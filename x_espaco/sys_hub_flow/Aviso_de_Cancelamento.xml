@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_hub_flow" sys_id="7c3bc1db-9c28-48e5-91a6-5764f325d991">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description><![CDATA[RN-04: notifica o cliente do cancelamento do agendamento, incluindo aviso de penalidade quando aplicável.]]></description>
+        <flow_steps><![CDATA[1. Look Up Record x_espaco_agendamento pelo sys_id recebido em event.parm1.\n2. Subflow EnviarNotificacao(destinatarioEmail=cliente.email, template='cancelamento', dados={servico.nome, data_hora, penalidade}).\n3. Se agendamento.penalidade=true, o template 'cancelamento' inclui o aviso da política de penalidade (RN-04).]]></flow_steps>
+        <name>Aviso de Cancelamento</name>
+        <run_as>system</run_as>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_id>7c3bc1db-9c28-48e5-91a6-5764f325d991</sys_id>
+        <sys_name>Aviso de Cancelamento</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <trigger_event>agendamento.cancelado</trigger_event>
+        <trigger_table>x_espaco_agendamento</trigger_table>
+        <trigger_type>event</trigger_type>
+    </sys_hub_flow>
+</record_update>

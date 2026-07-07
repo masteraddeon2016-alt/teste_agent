@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_hub_flow" sys_id="7f38b213-32b5-4744-a0c9-d574c6e99766">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description><![CDATA[Envia lembrete de sessão ~24h antes da data_hora para agendamentos ativos.]]></description>
+        <flow_steps><![CDATA[1. Look Up Records x_espaco_agendamento: status IN (novo,confirmado) AND data_hora BETWEEN now+23h e now+24h.\n2. Para cada registro encontrado: Subflow EnviarNotificacao(destinatarioEmail=cliente.email, destinatarioTelefone=cliente.telefone, template='lembrete', dados={servico.nome, data_hora}).]]></flow_steps>
+        <name>Lembrete de Sessão</name>
+        <run_as>system</run_as>
+        <schedule>a cada hora (0 * * * *)</schedule>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_id>7f38b213-32b5-4744-a0c9-d574c6e99766</sys_id>
+        <sys_name>Lembrete de Sessão</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <trigger_type>scheduled</trigger_type>
+    </sys_hub_flow>
+</record_update>
