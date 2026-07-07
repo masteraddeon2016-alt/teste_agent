@@ -17,11 +17,24 @@ CadastrarClienteUseCase.prototype = {
 
     /**
      * Executa o cadastro de um novo cliente.
-     * Implementação completa na Fase 3.
+     * dadosCliente: {nome, email, telefone, consentimentoLgpd}
+     * @throws {code, message} em caso de validação inválida (HTTP 400)
      */
     execute: function(dadosCliente) {
-        // TODO Fase 3
-        return null;
+        if (!dadosCliente.nome) {
+            throw { code: 400, message: "Campo 'nome' é obrigatório." };
+        }
+        var gr = new GlideRecord('x_espaco_cliente');
+        gr.initialize();
+        gr.setValue('nome', dadosCliente.nome);
+        gr.setValue('email', dadosCliente.email || '');
+        gr.setValue('telefone', dadosCliente.telefone || '');
+        gr.setValue('consentimento_lgpd', dadosCliente.consentimentoLgpd ? true : false);
+        var id = gr.insert();
+        if (!id) {
+            throw { code: 400, message: 'Não foi possível cadastrar o cliente.' };
+        }
+        return { sys_id: id, nome: dadosCliente.nome };
     },
 
     type: 'CadastrarClienteUseCase'

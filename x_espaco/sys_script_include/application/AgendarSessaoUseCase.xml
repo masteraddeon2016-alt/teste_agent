@@ -17,11 +17,34 @@ AgendarSessaoUseCase.prototype = {
 
     /**
      * Executa o agendamento de uma sessão.
-     * Implementação completa na Fase 3.
+     * dadosAgendamento: {clienteId, servicoId, profissionalId, dataHora}
+     * @throws {code, message} 400 (validação) ou 409 (conflito de horário, RN-02)
      */
     execute: function(dadosAgendamento) {
-        // TODO Fase 3
-        return null;
+        var obrigatorios = ['clienteId', 'servicoId', 'profissionalId', 'dataHora'];
+        for (var i = 0; i < obrigatorios.length; i++) {
+            var campo = obrigatorios[i];
+            if (!dadosAgendamento[campo]) {
+                throw { code: 400, message: "Campo '" + campo + "' é obrigatório." };
+            }
+        }
+
+        if (new AgendamentoEntity().existeConflito(dadosAgendamento.profissionalId, dadosAgendamento.dataHora, null)) {
+            throw { code: 409, message: 'Profissional já possui agendamento neste horário.' };
+        }
+
+        var gr = new GlideRecord('x_espaco_agendamento');
+        gr.initialize();
+        gr.setValue('cliente', dadosAgendamento.clienteId);
+        gr.setValue('servico', dadosAgendamento.servicoId);
+        gr.setValue('profissional', dadosAgendamento.profissionalId);
+        gr.setValue('data_hora', dadosAgendamento.dataHora);
+        gr.setValue('status', 'novo');
+        var id = gr.insert(); // Business Rule 'Validar Agendamento' (Fase 2) valida RN-01/RN-02
+        if (!id) {
+            throw { code: 400, message: 'Não foi possível criar o agendamento (regra de negócio).' };
+        }
+        return { sys_id: id, status: 'novo' };
     },
 
     type: 'AgendarSessaoUseCase'

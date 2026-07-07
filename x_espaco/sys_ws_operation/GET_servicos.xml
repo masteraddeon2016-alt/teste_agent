@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_operation" sys_id="f56f5b84-0ba4-4397-9101-5ccd154eb9d8">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes/>
+        <http_method>GET</http_method>
+        <name>Listar serviços</name>
+        <operation_script><![CDATA[(function process(request, response) {
+    if (!(gs.hasRole('x_espaco.leitura') || gs.hasRole('x_espaco.recepcionista') ||
+          gs.hasRole('x_espaco.profissional') || gs.hasRole('x_espaco.gestor') || gs.hasRole('x_espaco.admin'))) {
+        response.setStatus(403);
+        return { error: { code: 403, message: 'Sem permissão para consultar este recurso.' } };
+    }
+    var gr = new GlideRecord('x_espaco_servico');
+    gr.orderBy('nome');
+    gr.query();
+
+    var data = [];
+    while (gr.next()) {
+        data.push({
+            sys_id: gr.getUniqueValue(),
+            nome: gr.getValue('nome'),
+            area_corporal: gr.getValue('area_corporal'),
+            duracao_minutos: gr.getValue('duracao_minutos'),
+            preco: gr.getValue('preco')
+        });
+    }
+
+    response.setStatus(200);
+    return { data: data, meta: { page: 1, limit: data.length, total: data.length } };
+})(request, response);]]></operation_script>
+        <produces>application/json</produces>
+        <relative_path>/servicos</relative_path>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>false</requires_snc_internal_role>
+        <short_description>Lista os serviços cadastrados (área corporal, duração, preço).</short_description>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_id>f56f5b84-0ba4-4397-9101-5ccd154eb9d8</sys_id>
+        <sys_name>Listar serviços</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <web_service_definition display_value="Espaco Laser">381439ba-2ede-40be-8075-d973462d3779</web_service_definition>
+    </sys_ws_operation>
+</record_update>

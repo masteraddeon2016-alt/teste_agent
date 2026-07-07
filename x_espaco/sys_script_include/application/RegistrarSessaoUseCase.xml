@@ -15,12 +15,35 @@ RegistrarSessaoUseCase.prototype = {
     initialize: function() {},
 
     /**
-     * Registra a execução de uma sessão e conclui o agendamento associado.
-     * Implementação completa na Fase 3.
+     * Registra a execução de uma sessão: conclui o agendamento e, se um
+     * pacote for informado, deduz a sessão do saldo (RN-03/RN-05).
+     * dadosSessao: {agendamentoId, pacoteId (opcional)}
+     * @throws {code, message} 400 (validação), 404 (agendamento inexistente) ou 409 (pacote sem saldo)
      */
-    execute: function(agendamentoId, dadosSessao) {
-        // TODO Fase 3
-        return null;
+    execute: function(dadosSessao) {
+        if (!dadosSessao.agendamentoId) {
+            throw { code: 400, message: "Campo 'agendamentoId' é obrigatório." };
+        }
+        var agendamento = new GlideRecord('x_espaco_agendamento');
+        if (!agendamento.get(dadosSessao.agendamentoId)) {
+            throw { code: 404, message: 'Agendamento não encontrado.' };
+        }
+        agendamento.setValue('status', 'concluido');
+        agendamento.update(); // Business Rule 'Evento Sessao Concluida' (Fase 2) dispara sessao.concluida
+
+        var pacoteDeduzido = false;
+        if (dadosSessao.pacoteId) {
+            var pacote = new GlideRecord('x_espaco_pacote');
+            if (!pacote.get(dadosSessao.pacoteId)) {
+                throw { code: 404, message: 'Pacote não encontrado.' };
+            }
+            pacoteDeduzido = new PacoteEntity(pacote).deduzirSessao();
+            if (!pacoteDeduzido) {
+                throw { code: 409, message: 'Pacote sem saldo de sessões disponível.' };
+            }
+        }
+
+        return { sys_id: dadosSessao.agendamentoId, status: 'concluido', pacoteDeduzido: pacoteDeduzido };
     },
 
     type: 'RegistrarSessaoUseCase'

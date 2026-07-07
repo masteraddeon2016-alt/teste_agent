@@ -25,11 +25,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 - Eventos de domínio: `cliente.cadastrado`, `agendamento.criado`, `agendamento.cancelado`, `sessao.concluida`, `pacote.esgotado`.
 - Testes ATF das regras críticas.
 
-## [0.3.0] - planejado — REST APIs (Fase 3)
+## [0.3.0] - 2026-07-07 — REST APIs (Fase 3)
 ### Added
-- Scripted REST APIs sob `/api/x_espaco/*` (8 endpoints).
-- Script Includes de casos de uso.
-- Paginação, validação de entrada e tratamento de erros HTTP.
+- Casos de uso implementados: `CadastrarClienteUseCase`, `AgendarSessaoUseCase`, `RegistrarSessaoUseCase`, `GerenciarPacoteUseCase`.
+- Scripted REST API `x_espaco` (`/api/x_espaco/*`) com 7 resources: `GET/POST clientes`, `GET servicos`, `GET/POST agendamentos`, `PUT agendamentos/{id}`, `GET pacotes`.
+- Paginação (`page`/`limit`≤100) e busca nas listagens; respostas no formato `{data, meta}`.
+- Tratamento de erros `{error:{code,message}}` com HTTP 400 (validação), 404 (inexistente) e 409 (conflito de agenda, RN-02).
+- Verificação de role por resource via `gs.hasRole` (recepcionista/gestor/admin escrevem, demais papéis leem).
+- Teste ATF tipo REST cobrindo 201/400/409 e paginação.
 
 ## [0.4.0] - planejado — LGPD e Segurança (Fase 4)
 ### Added

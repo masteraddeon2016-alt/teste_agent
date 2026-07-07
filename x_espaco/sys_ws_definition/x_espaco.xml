@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_definition" sys_id="381439ba-2ede-40be-8075-d973462d3779">
+    <sys_ws_definition action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <base_uri>api/x_espaco</base_uri>
+        <consumes>application/json</consumes>
+        <name>x_espaco</name>
+        <produces>application/json</produces>
+        <service_id>x_espaco</service_id>
+        <short_description>API REST da aplicação Espaço Laser (clientes, serviços, agendamentos, pacotes).</short_description>
+        <sys_class_name>sys_ws_definition</sys_class_name>
+        <sys_id>381439ba-2ede-40be-8075-d973462d3779</sys_id>
+        <sys_name>x_espaco</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+    </sys_ws_definition>
+</record_update>

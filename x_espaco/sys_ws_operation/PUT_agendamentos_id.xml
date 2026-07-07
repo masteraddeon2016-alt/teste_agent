@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_operation" sys_id="ac6b513a-7f7a-4770-a9e6-eb4b3783df90">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <http_method>PUT</http_method>
+        <name>Reagendar ou cancelar agendamento</name>
+        <operation_script><![CDATA[(function process(request, response) {
+    if (!(gs.hasRole('x_espaco.recepcionista') || gs.hasRole('x_espaco.gestor') || gs.hasRole('x_espaco.admin'))) {
+        response.setStatus(403);
+        return { error: { code: 403, message: 'Sem permissão para executar esta operação.' } };
+    }
+    var id = request.pathParams.id;
+    var body = request.body.data || {};
+    var gr = new GlideRecord('x_espaco_agendamento');
+    if (!gr.get(id)) {
+        response.setStatus(404);
+        return { error: { code: 404, message: 'Agendamento não encontrado.' } };
+    }
+    if (body.dataHora) {
+        gr.setValue('data_hora', body.dataHora);
+        gr.setValue('status', 'reagendado');
+    }
+    if (body.status) {
+        gr.setValue('status', body.status);
+    }
+    if (!gr.update()) {
+        response.setStatus(409);
+        return { error: { code: 409, message: 'Conflito ao atualizar agendamento.' } };
+    }
+    response.setStatus(200);
+    return { data: { sys_id: id, status: gr.getValue('status') } };
+})(request, response);]]></operation_script>
+        <produces>application/json</produces>
+        <relative_path>/agendamentos/{id}</relative_path>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>false</requires_snc_internal_role>
+        <short_description>Reagenda (novo data_hora) ou altera o status (ex.: cancelado) de um agendamento.</short_description>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_id>ac6b513a-7f7a-4770-a9e6-eb4b3783df90</sys_id>
+        <sys_name>Reagendar ou cancelar agendamento</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <web_service_definition display_value="Espaco Laser">381439ba-2ede-40be-8075-d973462d3779</web_service_definition>
+    </sys_ws_operation>
+</record_update>

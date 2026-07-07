@@ -16,12 +16,48 @@ GerenciarPacoteUseCase.prototype = {
     initialize: function() {},
 
     /**
-     * Cria ou consulta pacotes de tratamento de um cliente.
-     * Implementação completa na Fase 3.
+     * Cria um novo pacote de tratamento para um cliente.
+     * dadosPacote: {clienteId, totalSessoes}
+     * @throws {code, message} 400 em caso de validação inválida
      */
     execute: function(dadosPacote) {
-        // TODO Fase 3
-        return null;
+        if (!dadosPacote.clienteId) {
+            throw { code: 400, message: "Campo 'clienteId' é obrigatório." };
+        }
+        if (!dadosPacote.totalSessoes || parseInt(dadosPacote.totalSessoes, 10) <= 0) {
+            throw { code: 400, message: "Campo 'totalSessoes' deve ser maior que zero." };
+        }
+        var gr = new GlideRecord('x_espaco_pacote');
+        gr.initialize();
+        gr.setValue('cliente', dadosPacote.clienteId);
+        gr.setValue('total_sessoes', dadosPacote.totalSessoes);
+        gr.setValue('sessoes_utilizadas', 0);
+        gr.setValue('status', 'ativo');
+        var id = gr.insert();
+        if (!id) {
+            throw { code: 400, message: 'Não foi possível criar o pacote.' };
+        }
+        return { sys_id: id, total_sessoes: dadosPacote.totalSessoes, sessoes_utilizadas: 0, status: 'ativo' };
+    },
+
+    /**
+     * Lista os pacotes de um cliente.
+     * @returns {Array} pacotes do cliente
+     */
+    listarPorCliente: function(clienteId) {
+        var pacotes = [];
+        var gr = new GlideRecord('x_espaco_pacote');
+        gr.addQuery('cliente', clienteId);
+        gr.query();
+        while (gr.next()) {
+            pacotes.push({
+                sys_id: gr.getUniqueValue(),
+                total_sessoes: gr.getValue('total_sessoes'),
+                sessoes_utilizadas: gr.getValue('sessoes_utilizadas'),
+                status: gr.getValue('status')
+            });
+        }
+        return pacotes;
     },
 
     type: 'GerenciarPacoteUseCase'

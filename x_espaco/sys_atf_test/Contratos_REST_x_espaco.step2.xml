@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="70c53ce1-0699-4830-8d5f-a6299962b4d0">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Cria cliente sem o campo obrigatório 'nome' e assert HTTP 400.</description>
+        <name>POST /clientes sem nome retorna 400</name>
+        <order>200</order>
+        <step_config>{"method": "POST", "endpoint": "/api/x_espaco/clientes", "body": {"data": {"email": "x@x.com"}}, "assert_status": 400}</step_config>
+        <step_type>REST Step</step_type>
+        <sys_id>70c53ce1-0699-4830-8d5f-a6299962b4d0</sys_id>
+        <sys_name>POST /clientes sem nome retorna 400</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>f578c828-2fbc-477c-a277-430d81e3dba7</test>
+    </sys_atf_step>
+</record_update>

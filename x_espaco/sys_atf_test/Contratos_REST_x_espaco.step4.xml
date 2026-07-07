@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="220a5a50-1c5c-4d6e-b164-ba969b476bcf">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Chama GET /api/x_espaco/clientes?page=1&amp;limit=5 e assert que meta.limit=5 e data.length&lt;=5.</description>
+        <name>GET /clientes respeita paginação</name>
+        <order>400</order>
+        <step_config>{"method": "GET", "endpoint": "/api/x_espaco/clientes?page=1&amp;limit=5", "assert_status": 200, "assert_meta_limit": 5}</step_config>
+        <step_type>REST Step</step_type>
+        <sys_id>220a5a50-1c5c-4d6e-b164-ba969b476bcf</sys_id>
+        <sys_name>GET /clientes respeita paginação</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>f578c828-2fbc-477c-a277-430d81e3dba7</test>
+    </sys_atf_step>
+</record_update>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_operation" sys_id="a2430763-a24b-40d4-94fa-487ce297edf1">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes/>
+        <http_method>GET</http_method>
+        <name>Listar agendamentos</name>
+        <operation_script><![CDATA[(function process(request, response) {
+    if (!(gs.hasRole('x_espaco.leitura') || gs.hasRole('x_espaco.recepcionista') ||
+          gs.hasRole('x_espaco.profissional') || gs.hasRole('x_espaco.gestor') || gs.hasRole('x_espaco.admin'))) {
+        response.setStatus(403);
+        return { error: { code: 403, message: 'Sem permissão para consultar este recurso.' } };
+    }
+    var page = parseInt(request.queryParams.page || '1', 10);
+    var limit = Math.min(parseInt(request.queryParams.limit || '20', 10), 100);
+    var offset = (page - 1) * limit;
+
+    var gr = new GlideRecord('x_espaco_agendamento');
+    if (request.queryParams.data) {
+        gr.addQuery('data_hora', 'ON', request.queryParams.data);
+    }
+    if (request.queryParams.profissionalId) {
+        gr.addQuery('profissional', request.queryParams.profissionalId);
+    }
+    if (request.queryParams.clienteId) {
+        gr.addQuery('cliente', request.queryParams.clienteId);
+    }
+    gr.orderByDesc('data_hora');
+    gr.chooseWindow(offset, offset + limit);
+    gr.query();
+
+    var data = [];
+    while (gr.next()) {
+        data.push({
+            sys_id: gr.getUniqueValue(),
+            cliente: gr.getValue('cliente'),
+            servico: gr.getValue('servico'),
+            profissional: gr.getValue('profissional'),
+            data_hora: gr.getValue('data_hora'),
+            status: gr.getValue('status'),
+            penalidade: gr.getValue('penalidade')
+        });
+    }
+
+    var count = new GlideAggregate('x_espaco_agendamento');
+    if (request.queryParams.data) {
+        count.addQuery('data_hora', 'ON', request.queryParams.data);
+    }
+    if (request.queryParams.profissionalId) {
+        count.addQuery('profissional', request.queryParams.profissionalId);
+    }
+    if (request.queryParams.clienteId) {
+        count.addQuery('cliente', request.queryParams.clienteId);
+    }
+    count.addAggregate('COUNT');
+    count.query();
+    var total = count.next() ? parseInt(count.getAggregate('COUNT'), 10) : 0;
+
+    response.setStatus(200);
+    return { data: data, meta: { page: page, limit: limit, total: total } };
+})(request, response);]]></operation_script>
+        <produces>application/json</produces>
+        <relative_path>/agendamentos</relative_path>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>false</requires_snc_internal_role>
+        <short_description>Lista agendamentos filtrando por data, profissionalId e/ou clienteId.</short_description>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_id>a2430763-a24b-40d4-94fa-487ce297edf1</sys_id>
+        <sys_name>Listar agendamentos</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <web_service_definition display_value="Espaco Laser">381439ba-2ede-40be-8075-d973462d3779</web_service_definition>
+    </sys_ws_operation>
+</record_update>
