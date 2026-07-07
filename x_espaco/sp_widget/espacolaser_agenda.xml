@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget" sys_id="3c501026-14e4-43e2-8b1f-405a58fd3f24">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+    c.profissionalId = '';
+    c.novo = { aberto: false, clienteId: '', servicoId: '', profissionalId: '', dataHora: '', erro: null };
+
+    c.carregar = function() {
+        c.data.action = 'listar';
+        c.data.profissionalId = c.profissionalId;
+        c.server.update();
+    };
+
+    c.agendar = function() {
+        c.novo.erro = null;
+        c.data.action = 'agendar';
+        c.data.clienteId = c.novo.clienteId;
+        c.data.servicoId = c.novo.servicoId;
+        c.data.profissionalId = c.novo.profissionalId;
+        c.data.dataHora = c.novo.dataHora;
+        c.server.update().then(function(r) {
+            if (r.data.erro) {
+                c.novo.erro = r.data.erro;
+            } else {
+                c.novo.aberto = false;
+                c.carregar();
+            }
+        });
+    };
+
+    c.carregar();
+};]]></client_script>
+        <css><![CDATA[.panel-footer .well { padding: 10px; }]]></css>
+        <description>Espaço Laser - Agenda</description>
+        <id>espacolaser_agenda</id>
+        <name>Espaço Laser - Agenda</name>
+        <public>false</public>
+        <roles>x_espaco.recepcionista,x_espaco.profissional,x_espaco.gestor,x_espaco.admin</roles>
+        <script><![CDATA[(function() {
+    data.profissionais = [];
+    var profGr = new GlideRecord('x_espaco_profissional');
+    profGr.addQuery('ativo', true);
+    profGr.query();
+    while (profGr.next()) {
+        data.profissionais.push({ sys_id: profGr.getUniqueValue(), nome: profGr.getValue('nome') });
+    }
+
+    if (input && input.action === 'agendar') {
+        try {
+            new AgendarSessaoUseCase().execute({
+                clienteId: input.clienteId,
+                servicoId: input.servicoId,
+                profissionalId: input.profissionalId,
+                dataHora: input.dataHora
+            });
+        } catch (e) {
+            data.erro = e.message || 'Não foi possível criar o agendamento.';
+        }
+        return;
+    }
+
+    data.agendamentos = [];
+    var gr = new GlideRecord('x_espaco_agendamento');
+    if (input && input.profissionalId) {
+        gr.addQuery('profissional', input.profissionalId);
+    }
+    gr.orderByDesc('data_hora');
+    gr.setLimit(50);
+    gr.query();
+    while (gr.next()) {
+        data.agendamentos.push({
+            sys_id: gr.getUniqueValue(),
+            data_hora: gr.getValue('data_hora'),
+            status: gr.getValue('status'),
+            cliente_nome: gr.cliente.nome.toString(),
+            servico_nome: gr.servico.nome.toString(),
+            profissional_nome: gr.profissional.nome.toString()
+        });
+    }
+})();]]></script>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_id>3c501026-14e4-43e2-8b1f-405a58fd3f24</sys_id>
+        <sys_name>Espaço Laser - Agenda</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading">
+    <select class="form-control" ng-model="c.profissionalId" ng-change="c.carregar()" ng-options="p.sys_id as p.nome for p in c.data.profissionais">
+      <option value="">Todos os profissionais</option>
+    </select>
+  </div>
+  <table class="table">
+    <thead><tr><th>Data/Hora</th><th>Cliente</th><th>Serviço</th><th>Profissional</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      <tr ng-repeat="ag in c.data.agendamentos">
+        <td>{{ag.data_hora}}</td>
+        <td>{{ag.cliente_nome}}</td>
+        <td>{{ag.servico_nome}}</td>
+        <td>{{ag.profissional_nome}}</td>
+        <td><span class="label label-info">{{ag.status}}</span></td>
+        <td><a href="/agenda/{{ag.sys_id}}">Ver</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="panel-footer">
+    <button class="btn btn-primary" ng-click="c.novo.aberto = !c.novo.aberto">Novo Agendamento</button>
+    <div ng-if="c.novo.aberto" class="well" style="margin-top:10px;">
+      <input class="form-control" placeholder="clienteId" ng-model="c.novo.clienteId" style="margin-bottom:5px;"/>
+      <input class="form-control" placeholder="servicoId" ng-model="c.novo.servicoId" style="margin-bottom:5px;"/>
+      <input class="form-control" placeholder="profissionalId" ng-model="c.novo.profissionalId" style="margin-bottom:5px;"/>
+      <input class="form-control" placeholder="YYYY-MM-DD HH:mm:ss" ng-model="c.novo.dataHora" style="margin-bottom:5px;"/>
+      <div class="alert alert-danger" ng-if="c.novo.erro">{{c.novo.erro}}</div>
+      <button class="btn btn-success" ng-click="c.agendar()">Confirmar</button>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget" sys_id="9bc51b65-bcc3-4683-995c-338e0504b4ca">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+    c.page = 1;
+    c.search = '';
+    c.totalPaginas = 1;
+
+    c.buscar = function() {
+        c.irPara(1);
+    };
+
+    c.irPara = function(pagina) {
+        c.page = pagina;
+        c.data.action = 'listar';
+        c.data.page = pagina;
+        c.data.search = c.search;
+        c.server.update().then(function(r) {
+            c.totalPaginas = Math.max(1, Math.ceil(r.data.total / r.data.limit));
+        });
+    };
+
+    c.irPara(1);
+};]]></client_script>
+        <css><![CDATA[.panel-footer .btn { margin-right: 5px; }]]></css>
+        <description>Espaço Laser - Lista de Clientes</description>
+        <id>espacolaser_lista_clientes</id>
+        <name>Espaço Laser - Lista de Clientes</name>
+        <public>false</public>
+        <roles>x_espaco.recepcionista,x_espaco.gestor,x_espaco.admin</roles>
+        <script><![CDATA[(function() {
+    data.clientes = [];
+    data.total = 0;
+    data.limit = 20;
+
+    var page = parseInt(input && input.page || 1, 10);
+    var search = (input && input.search) || '';
+    var limit = data.limit;
+    var offset = (page - 1) * limit;
+
+    var gr = new GlideRecord('x_espaco_cliente');
+    if (search) {
+        gr.addQuery('nome', 'CONTAINS', search).addOrCondition('email', 'CONTAINS', search);
+    }
+    gr.orderBy('nome');
+    gr.chooseWindow(offset, offset + limit);
+    gr.query();
+    while (gr.next()) {
+        data.clientes.push({
+            sys_id: gr.getUniqueValue(),
+            nome: gr.getValue('nome'),
+            email: gr.getValue('email'),
+            telefone: gr.getValue('telefone'),
+            consentimento_lgpd: gr.getValue('consentimento_lgpd') == 'true'
+        });
+    }
+
+    var count = new GlideAggregate('x_espaco_cliente');
+    if (search) {
+        count.addQuery('nome', 'CONTAINS', search).addOrCondition('email', 'CONTAINS', search);
+    }
+    count.addAggregate('COUNT');
+    count.query();
+    data.total = count.next() ? parseInt(count.getAggregate('COUNT'), 10) : 0;
+})();]]></script>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_id>9bc51b65-bcc3-4683-995c-338e0504b4ca</sys_id>
+        <sys_name>Espaço Laser - Lista de Clientes</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading">
+    <input type="text" ng-model="c.search" ng-change="c.buscar()" placeholder="Buscar por nome ou email" class="form-control"/>
+  </div>
+  <table class="table">
+    <thead><tr><th>Nome</th><th>Email</th><th>Telefone</th><th>Consentimento LGPD</th></tr></thead>
+    <tbody>
+      <tr ng-repeat="cliente in c.data.clientes">
+        <td>{{cliente.nome}}</td>
+        <td>{{cliente.email}}</td>
+        <td>{{cliente.telefone}}</td>
+        <td>{{cliente.consentimento_lgpd ? 'Sim' : 'Não'}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="panel-footer">
+    <button class="btn btn-default" ng-disabled="c.page<=1" ng-click="c.irPara(c.page-1)">Anterior</button>
+    <span>Página {{c.page}} de {{c.totalPaginas}}</span>
+    <button class="btn btn-default" ng-disabled="c.page>=c.totalPaginas" ng-click="c.irPara(c.page+1)">Próxima</button>
+    <a class="btn btn-primary pull-right" href="/clientes/novo">Novo Cliente</a>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

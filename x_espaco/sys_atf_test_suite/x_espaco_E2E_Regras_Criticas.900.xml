@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_test_suite_test" sys_id="080f56d7-7bd8-4511-8de2-6c3df4fa6f80">
+    <sys_atf_test_suite_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <order>900</order>
+        <sys_class_name>sys_atf_test_suite_test</sys_class_name>
+        <sys_id>080f56d7-7bd8-4511-8de2-6c3df4fa6f80</sys_id>
+        <sys_name>T9 - ACL field-level (role leitura)</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>9c4774fe-0908-4caa-8b00-bc40284d3364</test>
+        <test_suite>d7b62024-bb48-4d6e-81ca-ab5a8518bcbc</test_suite>
+    </sys_atf_test_suite_test>
+</record_update>

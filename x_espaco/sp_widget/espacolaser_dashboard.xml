@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget" sys_id="899c67f2-0c8f-4676-81c0-06fc2ad5cc14">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+};]]></client_script>
+        <css><![CDATA[.panel-body h3 { margin: 0 0 5px 0; }]]></css>
+        <description>Espaço Laser - Dashboard</description>
+        <id>espacolaser_dashboard</id>
+        <name>Espaço Laser - Dashboard</name>
+        <public>false</public>
+        <roles>x_espaco.gestor,x_espaco.admin</roles>
+        <script><![CDATA[(function() {
+    // RF-09/RF-17: indicadores calculados com GlideAggregate (evita GlideRecord em loop).
+    var concluidos = new GlideAggregate('x_espaco_agendamento');
+    concluidos.addQuery('status', 'concluido');
+    concluidos.addAggregate('COUNT');
+    concluidos.query();
+    data.sessoesRealizadas = concluidos.next() ? parseInt(concluidos.getAggregate('COUNT'), 10) : 0;
+
+    var ativos = new GlideAggregate('x_espaco_agendamento');
+    ativos.addQuery('status', 'IN', 'novo,confirmado');
+    ativos.addAggregate('COUNT');
+    ativos.query();
+    data.agendamentosAtivos = ativos.next() ? parseInt(ativos.getAggregate('COUNT'), 10) : 0;
+
+    var pacotesEsgotados = new GlideAggregate('x_espaco_pacote');
+    pacotesEsgotados.addQuery('status', 'esgotado');
+    pacotesEsgotados.addAggregate('COUNT');
+    pacotesEsgotados.query();
+    data.pacotesEsgotados = pacotesEsgotados.next() ? parseInt(pacotesEsgotados.getAggregate('COUNT'), 10) : 0;
+
+    // Faturamento: soma do preço do serviço para cada agendamento concluído.
+    data.faturamento = 0;
+    var gr = new GlideRecord('x_espaco_agendamento');
+    gr.addQuery('status', 'concluido');
+    gr.query();
+    while (gr.next()) {
+        data.faturamento += parseFloat(gr.servico.preco.toString() || '0');
+    }
+
+    data.ocupacao = [];
+    var ga = new GlideAggregate('x_espaco_agendamento');
+    ga.addQuery('status', 'concluido');
+    ga.groupBy('profissional');
+    ga.addAggregate('COUNT');
+    ga.query();
+    while (ga.next()) {
+        data.ocupacao.push({
+            profissional: ga.profissional.nome.toString(),
+            total: parseInt(ga.getAggregate('COUNT'), 10)
+        });
+    }
+})();]]></script>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_id>899c67f2-0c8f-4676-81c0-06fc2ad5cc14</sys_id>
+        <sys_name>Espaço Laser - Dashboard</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <template><![CDATA[<div class="row">
+  <div class="col-sm-3"><div class="panel panel-primary"><div class="panel-body">
+    <h3>{{c.data.sessoesRealizadas}}</h3><p>Sessões realizadas</p>
+  </div></div></div>
+  <div class="col-sm-3"><div class="panel panel-success"><div class="panel-body">
+    <h3>{{c.data.faturamento | currency:'R$'}}</h3><p>Faturamento no período</p>
+  </div></div></div>
+  <div class="col-sm-3"><div class="panel panel-warning"><div class="panel-body">
+    <h3>{{c.data.pacotesEsgotados}}</h3><p>Pacotes esgotados</p>
+  </div></div></div>
+  <div class="col-sm-3"><div class="panel panel-info"><div class="panel-body">
+    <h3>{{c.data.agendamentosAtivos}}</h3><p>Agendamentos ativos</p>
+  </div></div></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Ocupação por Profissional (sessões concluídas)</div>
+  <table class="table">
+    <thead><tr><th>Profissional</th><th>Sessões Concluídas</th></tr></thead>
+    <tbody>
+      <tr ng-repeat="o in c.data.ocupacao"><td>{{o.profissional}}</td><td>{{o.total}}</td></tr>
+    </tbody>
+  </table>
+</div>]]></template>
+    </sp_widget>
+</record_update>

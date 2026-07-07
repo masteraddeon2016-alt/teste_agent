@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_test_suite_test" sys_id="ef5eab81-21bf-4cf4-92e5-9db125e028c7">
+    <sys_atf_test_suite_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <order>500</order>
+        <sys_class_name>sys_atf_test_suite_test</sys_class_name>
+        <sys_id>ef5eab81-21bf-4cf4-92e5-9db125e028c7</sys_id>
+        <sys_name>T5 - Registrar sessão concluída</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>41e91a77-8849-4136-96aa-43181a460ba5</test>
+        <test_suite>d7b62024-bb48-4d6e-81ca-ab5a8518bcbc</test_suite>
+    </sys_atf_test_suite_test>
+</record_update>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_test" sys_id="200acf2f-d9b5-4e00-9b35-569da0be53b3">
+    <sys_atf_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Garante que CadastrarClienteUseCase cria o cliente e registra consentimento_lgpd=true com versão/finalidade.</description>
+        <name>T1 - Cadastro de cliente com consentimento</name>
+        <sys_id>200acf2f-d9b5-4e00-9b35-569da0be53b3</sys_id>
+        <sys_name>T1 - Cadastro de cliente com consentimento</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <table>x_espaco_cliente</table>
+    </sys_atf_test>
+</record_update>

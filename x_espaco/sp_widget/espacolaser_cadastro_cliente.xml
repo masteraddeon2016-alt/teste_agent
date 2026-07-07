@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget" sys_id="32c6e5f2-0504-4e2a-a26b-1e2c7adc765e">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+    c.form = { nome: '', email: '', telefone: '', consentimentoLgpd: false };
+
+    c.salvar = function() {
+        c.erro = null;
+        c.msg = null;
+        if (!c.form.nome) {
+            c.erro = "Campo 'nome' é obrigatório.";
+            return;
+        }
+        if (!c.form.consentimentoLgpd) {
+            c.erro = 'É obrigatório o aceite do termo LGPD.';
+            return;
+        }
+        c.data.action = 'salvar';
+        angular.extend(c.data, c.form);
+        c.server.update().then(function(r) {
+            if (r.data.sucesso) {
+                c.msg = 'Cliente cadastrado com sucesso!';
+                c.form = { nome: '', email: '', telefone: '', consentimentoLgpd: false };
+            } else {
+                c.erro = r.data.erro;
+            }
+        });
+    };
+};]]></client_script>
+        <css><![CDATA[.panel-body .form-group { margin-bottom: 12px; }]]></css>
+        <description>Espaço Laser - Cadastro de Cliente</description>
+        <id>espacolaser_cadastro_cliente</id>
+        <name>Espaço Laser - Cadastro de Cliente</name>
+        <public>false</public>
+        <roles>x_espaco.recepcionista,x_espaco.gestor,x_espaco.admin</roles>
+        <script><![CDATA[(function() {
+    // Widget de intake: consentimento LGPD é obrigatório nesta tela (política de
+    // recepção), mesmo a API/UseCase permitindo consentimentoLgpd=false para
+    // outros fluxos de integração.
+    if (input && input.action === 'salvar') {
+        if (!input.consentimentoLgpd) {
+            data.erro = 'É obrigatório o aceite do termo LGPD.';
+            return;
+        }
+        try {
+            var out = new CadastrarClienteUseCase().execute({
+                nome: input.nome,
+                email: input.email,
+                telefone: input.telefone,
+                consentimentoLgpd: true,
+                consentimentoVersao: 'v1.0',
+                consentimentoFinalidade: 'Prestação de serviços de depilação a laser e comunicação com o cliente'
+            });
+            data.sucesso = true;
+            data.clienteId = out.sys_id;
+        } catch (e) {
+            data.erro = e.message || 'Não foi possível cadastrar o cliente.';
+        }
+    }
+})();]]></script>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_id>32c6e5f2-0504-4e2a-a26b-1e2c7adc765e</sys_id>
+        <sys_name>Espaço Laser - Cadastro de Cliente</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading">Novo Cliente</div>
+  <div class="panel-body">
+    <div class="alert alert-danger" ng-if="c.erro">{{c.erro}}</div>
+    <div class="alert alert-success" ng-if="c.msg">{{c.msg}}</div>
+    <div class="form-group">
+      <label>Nome *</label>
+      <input type="text" class="form-control" ng-model="c.form.nome"/>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" ng-model="c.form.email"/>
+    </div>
+    <div class="form-group">
+      <label>Telefone</label>
+      <input type="text" class="form-control" ng-model="c.form.telefone"/>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="c.form.consentimentoLgpd"/>
+        Aceito o termo de consentimento para tratamento de dados pessoais (LGPD) *
+      </label>
+    </div>
+    <button class="btn btn-primary" ng-click="c.salvar()">Salvar</button>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

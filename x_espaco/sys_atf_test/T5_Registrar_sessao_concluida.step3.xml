@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="6ff46cf3-c7db-4a7d-a332-cd3d931f9ac6">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Consulta o GlideRecord do agendamento e assert que status='concluido' foi persistido.</description>
+        <name>Assert persistência do status concluido</name>
+        <order>300</order>
+        <step_config>{"script": "(function(outputs, steps, stepResult, assertEqual) {\n    var id = steps('criar_agendamento').record_id;\n    var gr = new GlideRecord('x_espaco_agendamento');\n    gr.get(id);\n    assertEqual({ name: 'status persistido concluido', shouldbe: 'concluido', value: gr.getValue('status') });\n})(outputs, steps, stepResult, assertEqual);"}</step_config>
+        <step_type>Server Side Script</step_type>
+        <sys_id>6ff46cf3-c7db-4a7d-a332-cd3d931f9ac6</sys_id>
+        <sys_name>Assert persistência do status concluido</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>41e91a77-8849-4136-96aa-43181a460ba5</test>
+    </sys_atf_step>
+</record_update>

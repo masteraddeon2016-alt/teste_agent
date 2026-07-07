@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step" sys_id="8bc6add6-6346-4f09-8142-106f39608794">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Cria um agendamento válido em horário sem conflito e assert HTTP 201 com data.sys_id retornado.</description>
+        <name>POST /agendamentos com horário livre retorna 201</name>
+        <order>100</order>
+        <step_config>{"method": "POST", "endpoint": "/api/x_espaco/agendamentos", "body": {"data": {"clienteId": "${cliente_teste}", "servicoId": "${servico_teste}", "profissionalId": "${profissional_teste_livre}", "dataHora": "${data_hora_livre_teste}"}}, "assert_status": 201}</step_config>
+        <step_type>REST Step</step_type>
+        <sys_id>8bc6add6-6346-4f09-8142-106f39608794</sys_id>
+        <sys_name>POST /agendamentos com horário livre retorna 201</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <test>49901e50-c218-48b8-a40d-a2d21232be31</test>
+    </sys_atf_step>
+</record_update>

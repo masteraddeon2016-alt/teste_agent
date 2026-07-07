@@ -1,8 +1,8 @@
 {
   "sessionId": "b0a9e503-1c7a-4cb7-aa2b-ec65d4b04a24",
   "platformUrl": "http://localhost:5001",
-  "currentPhase": 5,
-  "updatedAt": "2026-07-07T19:30:37.4814364Z",
+  "currentPhase": 6,
+  "updatedAt": "2026-07-07T19:51:43.0824248Z",
   "phases": [
     {
       "index": 1,
@@ -17,7 +17,7 @@
       "nome": "Camada de Dom\u00EDnio e Regras de Neg\u00F3cio",
       "objetivo": "Implementar entidades de dom\u00EDnio, agregados e regras de neg\u00F3cio via Script Includes e Business Rules garantindo invariantes.",
       "status": "done",
-      "completedAt": "2026-07-07T19:30:37.4442129Z",
+      "completedAt": "2026-07-07T19:30:37.4442120",
       "failedAt": null
     },
     {
@@ -40,8 +40,8 @@
       "index": 5,
       "nome": "Fluxos, Notifica\u00E7\u00F5es e Integra\u00E7\u00F5es",
       "objetivo": "Orquestrar fluxos de neg\u00F3cio e notifica\u00E7\u00F5es de agendamento via Flow Designer e IntegrationHub.",
-      "status": "idle",
-      "completedAt": null,
+      "status": "done",
+      "completedAt": "2026-07-07T19:51:43.0485788Z",
       "failedAt": null
     },
     {

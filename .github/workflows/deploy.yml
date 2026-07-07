@@ -1,0 +1,54 @@
+name: CI-CD Espaco Laser
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar Update Set (estrutura XML de x_espaco/)
+        run: |
+          find x_espaco -name "*.xml" -print0 | xargs -0 -n1 python3 -c "
+          import sys, xml.dom.minidom
+          xml.dom.minidom.parse(sys.argv[1])
+          " || (echo 'XML invalido em x_espaco/' && exit 1)
+
+      - name: Aplicar Update Set em Staging
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl -sf -u "$SN_USER:$SN_PASS" -X POST \
+            "$SN_STAGING_URL/api/now/table/sys_update_set" \
+            -H "Content-Type: application/json" \
+            -d '{"name":"x_espaco Update Set - '"${GITHUB_SHA}"'"}'
+        env:
+          SN_USER: ${{ secrets.SN_USER }}
+          SN_PASS: ${{ secrets.SN_PASS }}
+          SN_STAGING_URL: ${{ secrets.SN_STAGING_URL }}
+
+      - name: Executar ATF Test Suite (x_espaco - Regras Criticas)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl -sf -u "$SN_USER:$SN_PASS" -X POST \
+            "$SN_STAGING_URL/api/sn_cicd/testsuite/run?test_suite_sys_id=$ATF_SUITE_ID"
+        env:
+          SN_USER: ${{ secrets.SN_USER }}
+          SN_PASS: ${{ secrets.SN_PASS }}
+          SN_STAGING_URL: ${{ secrets.SN_STAGING_URL }}
+          ATF_SUITE_ID: ${{ secrets.ATF_SUITE_ID }}
+
+      - name: Promover Update Set para Producao (rolling)
+        if: github.ref == 'refs/heads/main' && success()
+        run: |
+          curl -sf -u "$SN_USER:$SN_PASS" -X POST \
+            "$SN_PROD_URL/api/sn_cicd/app/batch/install" \
+            -H "Content-Type: application/json"
+        env:
+          SN_USER: ${{ secrets.SN_USER }}
+          SN_PASS: ${{ secrets.SN_PASS }}
+          SN_PROD_URL: ${{ secrets.SN_PROD_URL }}

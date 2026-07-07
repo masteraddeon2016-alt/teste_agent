@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget" sys_id="af93e299-c7ec-4ed1-bb17-49133a09c0f6">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+    c.pacoteId = '';
+
+    c.concluir = function() {
+        c.erro = null;
+        c.data.action = 'concluir';
+        c.data.pacoteId = c.pacoteId;
+        c.server.update().then(function(r) {
+            if (r.data.erro) {
+                c.erro = r.data.erro;
+            }
+        });
+    };
+};]]></client_script>
+        <css><![CDATA[.panel-body p { margin-bottom: 6px; }]]></css>
+        <description>Espaço Laser - Detalhe do Agendamento</description>
+        <id>espacolaser_detalhe_agendamento</id>
+        <name>Espaço Laser - Detalhe do Agendamento</name>
+        <public>false</public>
+        <roles>x_espaco.profissional,x_espaco.recepcionista,x_espaco.gestor,x_espaco.admin</roles>
+        <script><![CDATA[(function() {
+    var agendamentoId = options.agendamento_id || (input && input.agendamentoId);
+
+    if (input && input.action === 'concluir') {
+        try {
+            new RegistrarSessaoUseCase().execute({
+                agendamentoId: agendamentoId,
+                pacoteId: input.pacoteId || null
+            });
+        } catch (e) {
+            data.erro = e.message || 'Não foi possível concluir a sessão.';
+        }
+    }
+
+    data.agendamento = {};
+    var gr = new GlideRecord('x_espaco_agendamento');
+    if (gr.get(agendamentoId)) {
+        data.agendamento = {
+            sys_id: gr.getUniqueValue(),
+            data_hora: gr.getValue('data_hora'),
+            status: gr.getValue('status'),
+            penalidade: gr.getValue('penalidade') == 'true',
+            cliente_nome: gr.cliente.nome.toString(),
+            servico_nome: gr.servico.nome.toString(),
+            profissional_nome: gr.profissional.nome.toString()
+        };
+    }
+})();]]></script>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_id>af93e299-c7ec-4ed1-bb17-49133a09c0f6</sys_id>
+        <sys_name>Espaço Laser - Detalhe do Agendamento</sys_name>
+        <sys_package display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_package>
+        <sys_scope display_value="Espaco Laser">13d5ac79-cfc4-4dbb-a1de-375a04f8d533</sys_scope>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading">Agendamento</div>
+  <div class="panel-body">
+    <p><strong>Cliente:</strong> {{c.data.agendamento.cliente_nome}}</p>
+    <p><strong>Serviço:</strong> {{c.data.agendamento.servico_nome}}</p>
+    <p><strong>Profissional:</strong> {{c.data.agendamento.profissional_nome}}</p>
+    <p><strong>Data/Hora:</strong> {{c.data.agendamento.data_hora}}</p>
+    <p><strong>Status:</strong> <span class="label label-info">{{c.data.agendamento.status}}</span></p>
+    <p ng-if="c.data.agendamento.penalidade"><span class="label label-warning">Penalidade aplicada</span></p>
+    <div class="alert alert-danger" ng-if="c.erro">{{c.erro}}</div>
+    <input class="form-control" placeholder="pacoteId (opcional, para deduzir sessão)" ng-model="c.pacoteId" style="margin-bottom:10px;"/>
+    <button class="btn btn-success" ng-if="c.data.agendamento.status !== 'concluido'" ng-click="c.concluir()">Concluir Sessão</button>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

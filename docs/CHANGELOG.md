@@ -55,9 +55,11 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 - Credential Alias `espacolaser_notify_gateway` (sem segredo em texto claro — valor real configurado apenas na instância).
 - Teste ATF cobrindo a invalidação/repopulação do cache de serviços.
 
-## [1.0.0] - planejado — Go-Live (Fase 6)
+## [1.0.0] - 2026-07-07 — Interface, Dashboard e Testes (Fase 6)
 ### Added
-- Telas do Service Portal e dashboard de KPIs.
-- Suíte ATF completa (cobertura ≥80%).
-- Pipeline CI/CD com GitHub Actions e promoção de Update Sets.
-- Deploy em produção.
+- 6 telas via Service Portal Widgets: Lista de Clientes (`/clientes`), Cadastro de Cliente (`/clientes/novo`, checkbox LGPD obrigatório no widget), Agenda (`/agenda`), Detalhe do Agendamento (`/agenda/:id`, botão Concluir), Pacotes do Cliente (`/clientes/:id/pacotes`, barra de progresso de saldo), Dashboard (`/dashboard`, KPIs via `GlideAggregate`).
+- ATF Test Suite `x_espaco - Regras Críticas` agrupando 10 testes (T1–T10): 5 novos (cadastro com/sem consentimento, agendamento sem conflito, registro de sessão, performance) + 5 reaproveitados das Fases 2–4 (conflito de agenda, dedução sem saldo, anonimização, paginação, ACL field-level).
+- Pipeline `.github/workflows/deploy.yml`: valida XML, aplica Update Set em staging, roda a ATF Test Suite via `sn_cicd` e promove para produção se verde — segredos via GitHub Secrets, nunca em texto claro.
+
+### Known gap
+- **Deploy em produção não foi executado.** Este ambiente não tem uma instância ServiceNow real nem um remote GitHub conectado — o pipeline acima é o artefato entregue (definição versionada e correta), mas rodar `git push`, provisionar a instância e observar o Actions executar de fato ficam fora do que é possível fazer neste repositório local. O critério de aceite "disponibilidade ≥99% em produção" permanece pendente de um ambiente real.
